@@ -4,25 +4,24 @@ class Cars {
   private type: string;
   private speed: number;
 
-  setType(type: string) {
-    this.type = type;
-  }
-
-  getType() {
+  public get $type(): string {
     return this.type;
   }
 
-  setSpeed(speed: number) {
-    if (speed <= 0) {
+  public set $type(value: string) {
+    this.type = value;
+  }
+
+  public get $speed(): number {
+    return this.speed;
+  }
+
+  public set $speed(value: number) {
+    if (value < 0) {
       console.log("Speed must be greater than 0");
       return;
     }
-
-    this.speed = speed;
-  }
-
-  getSpeed() {
-    return this.speed;
+    this.speed = value;
   }
 
   getCarInfo() {
@@ -36,6 +35,6 @@ indicating that the speed must be greater than 0. It sets the type of the car to
 calls the `getCarInfo()` method, which logs the type and speed of the car to the console. */
 const car = new Cars();
 
-car.setSpeed(-32131231);
-car.setType("Sedan");
+car.$speed = -10;
+car.$type = "Sedan";
 car.getCarInfo();
