@@ -21,8 +21,9 @@ class Role extends Character {
     this.role = role;
   }
 
-  getRole() {
-    console.log(this.role);
+  getRole(): string {
+    // console.log(this.role);
+    return this.role;
   }
 }
 
@@ -39,23 +40,27 @@ class Person extends Role {
   }
 }
 
-const roles: string[] = ["Mage", "Warrior", "Assassin", "Tank", "Support"];
+// const roles: string[] = ["Mage", "Warrior", "Assassin", "Tank", "Support"];
 
-for (const role of roles) {
-  const listrole = new Role(role);
-}
+const mage = new Role("Mage");
+const warrior = new Role("Warrior");
+const assassin = new Role("Assassin");
+const tank = new Role("Tank");
+const support = new Role("Support");
+
+const roles: Role[] = [mage, warrior, assassin, tank, support];
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-rl.question("Apakah Mau Buat Character? [y/n/z] ", (answer) => {
+rl.question("Apakah Mau Buat Character? [y/n] ", (answer) => {
   switch (answer.toLowerCase()) {
     case "y":
       console.log("Daftar Role yang tersedia:");
       roles.forEach((role, index) => {
-        console.log(`${index + 1}. ${role}`);
+        console.log(`${index + 1}. ${role.getRole()}`);
       });
       rl.question("Pilih Role: ", (answer) => {
         const selectedRole = Number(answer) - 1;
@@ -63,7 +68,7 @@ rl.question("Apakah Mau Buat Character? [y/n/z] ", (answer) => {
         if (selectedRole >= 0 && selectedRole < roles.length) {
           rl.question("Masukkan Nama: ", (name) => {
             rl.question("Masukkan Umur: ", (age) => {
-              const person = new Person(name, Number(age), roles[selectedRole]);
+              const person = new Person(name, Number(age), roles[selectedRole].getRole());
               person.getData();
               rl.close();
             });

@@ -35,7 +35,8 @@ var Role = /** @class */ (function (_super) {
         return _this;
     }
     Role.prototype.getRole = function () {
-        console.log(this.role);
+        // console.log(this.role);
+        return this.role;
     };
     return Role;
 }(Character));
@@ -52,11 +53,13 @@ var Person = /** @class */ (function (_super) {
     };
     return Person;
 }(Role));
-var roles = ["Mage", "Warrior", "Assassin", "Tank", "Support"];
-for (var _i = 0, roles_1 = roles; _i < roles_1.length; _i++) {
-    var role = roles_1[_i];
-    var listrole = new Role(role);
-}
+// const roles: string[] = ["Mage", "Warrior", "Assassin", "Tank", "Support"];
+var mage = new Role("Mage");
+var warrior = new Role("Warrior");
+var assassin = new Role("Assassin");
+var tank = new Role("Tank");
+var support = new Role("Support");
+var roles = [mage, warrior, assassin, tank, support];
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -66,14 +69,14 @@ rl.question("Apakah Mau Buat Character? [y/n] ", function (answer) {
         case "y":
             console.log("Daftar Role yang tersedia:");
             roles.forEach(function (role, index) {
-                console.log("".concat(index + 1, ". ").concat(role));
+                console.log("".concat(index + 1, ". ").concat(role.getRole()));
             });
             rl.question("Pilih Role: ", function (answer) {
                 var selectedRole = Number(answer) - 1;
                 if (selectedRole >= 0 && selectedRole < roles.length) {
                     rl.question("Masukkan Nama: ", function (name) {
                         rl.question("Masukkan Umur: ", function (age) {
-                            var person = new Person(name, Number(age), roles[selectedRole]);
+                            var person = new Person(name, Number(age), roles[selectedRole].getRole());
                             person.getData();
                             rl.close();
                         });
