@@ -18,12 +18,26 @@ eating, sleeping, moving, and making noise. */
 var Animals = /** @class */ (function () {
     function Animals() {
     }
-    Animals.prototype.setCoordX = function (coordX) {
-        this.coordX = coordX;
-    };
-    Animals.prototype.setCoordY = function (coordY) {
-        this.coordY = coordY;
-    };
+    Object.defineProperty(Animals.prototype, "$coordX", {
+        get: function () {
+            return this.coordX;
+        },
+        set: function (value) {
+            this.coordX = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Animals.prototype, "$coordY", {
+        get: function () {
+            return this.coordY;
+        },
+        set: function (value) {
+            this.coordY = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Animals.prototype.eat = function () {
         console.log("Aku Lagi Makan");
     };
@@ -49,6 +63,11 @@ var Cat = /** @class */ (function (_super) {
     };
     Cat.prototype.move = function () {
         console.log("Sedang berjalan dengan paw mungilku");
+        /* `super.move();` is calling the `move()` method of the parent class (`Animals`) from within the
+        `move()` method of the child class (`Cat`). This allows the child class to inherit and extend
+        the behavior of the parent class. In this case, the `move()` method of `Cat` is adding a message
+        to the console before calling the `move()` method of `Animals`, which logs the coordinates of
+        the animal's movement. */
         _super.prototype.move.call(this);
     };
     return Cat;
@@ -60,9 +79,13 @@ var Floppa = /** @class */ (function (_super) {
     function Floppa() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Floppa.prototype.setOwner = function (owner) {
-        this.owner = owner;
-    };
+    Object.defineProperty(Floppa.prototype, "$owner", {
+        set: function (value) {
+            this.owner = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Floppa.prototype.returnToOwner = function () {
         console.log("Kembali ke ".concat(this.owner));
     };
@@ -75,9 +98,13 @@ var Sogga = /** @class */ (function (_super) {
     function Sogga() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Sogga.prototype.setOwner = function (owner) {
-        this.owner = owner;
-    };
+    Object.defineProperty(Sogga.prototype, "$owner", {
+        set: function (value) {
+            this.owner = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Sogga.prototype.returnToOwner = function () {
         console.log("Kembali ke ".concat(this.owner));
     };
@@ -87,16 +114,16 @@ var Sogga = /** @class */ (function (_super) {
 owners, making them make noise, move, and return to their owners. It demonstrates the inheritance
 and polymorphism features of TypeScript classes. */
 var floppa = new Floppa();
-floppa.setCoordX(200);
-floppa.setCoordY(900);
-floppa.setOwner("Dimas");
+floppa.$coordX = 123;
+floppa.$coordY = 90390;
+floppa.$owner = "Rusky";
 floppa.makeNoise();
 floppa.move();
 floppa.returnToOwner();
 var sogga = new Sogga();
-sogga.setCoordX(213);
-sogga.setCoordY(90390);
-sogga.setOwner("Rusky");
+sogga.$coordX = 123;
+sogga.$coordY = 90390;
+sogga.$owner = "Dimas";
 sogga.makeNoise();
 sogga.move();
 sogga.returnToOwner();

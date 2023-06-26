@@ -6,12 +6,20 @@ class Animals {
   protected coordX: number;
   protected coordY: number;
 
-  setCoordX(coordX: number) {
-    this.coordX = coordX;
+  public get $coordX(): number {
+    return this.coordX;
   }
 
-  setCoordY(coordY: number) {
-    this.coordY = coordY;
+  public set $coordX(value: number) {
+    this.coordX = value;
+  }
+
+  public get $coordY(): number {
+    return this.coordY;
+  }
+
+  public set $coordY(value: number) {
+    this.coordY = value;
   }
 
   eat() {
@@ -49,8 +57,8 @@ owner and return to the owner. */
 class Floppa extends Cat {
   private owner: string;
 
-  setOwner(owner: string) {
-    this.owner = owner;
+  public set $owner(value: string) {
+    this.owner = value;
   }
 
   returnToOwner() {
@@ -63,8 +71,8 @@ and return the cat to its owner. */
 class Sogga extends Cat {
   private owner: string;
 
-  setOwner(owner: string) {
-    this.owner = owner;
+  public set $owner(value: string) {
+    this.owner = value;
   }
 
   returnToOwner() {
@@ -76,17 +84,17 @@ class Sogga extends Cat {
 owners, making them make noise, move, and return to their owners. It demonstrates the inheritance
 and polymorphism features of TypeScript classes. */
 const floppa = new Floppa();
-floppa.setCoordX(200);
-floppa.setCoordY(900);
-floppa.setOwner("Dimas");
+floppa.$coordX = 123;
+floppa.$coordY = 90390;
+floppa.$owner = "Rusky";
 floppa.makeNoise();
 floppa.move();
 floppa.returnToOwner();
 
 const sogga = new Sogga();
-sogga.setCoordX(213);
-sogga.setCoordY(90390);
-sogga.setOwner("Rusky");
+sogga.$coordX = 123;
+sogga.$coordY = 90390;
+sogga.$owner = "Dimas";
 sogga.makeNoise();
 sogga.move();
 sogga.returnToOwner();
