@@ -37,7 +37,6 @@ var Mage = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Mage.prototype.attack = function () {
-        _super.prototype.attack.call(this);
         console.log("Casting A Spell");
         this.mana -= 1;
     };
@@ -49,7 +48,6 @@ var Knight = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Knight.prototype.attack = function () {
-        _super.prototype.attack.call(this);
         console.log("Im Swinging With A Sword");
         this.shield -= 1;
     };
@@ -61,7 +59,6 @@ var Archer = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Archer.prototype.attack = function () {
-        _super.prototype.attack.call(this);
         console.log("Firing An Arrow");
         this.arrow -= 1;
     };

@@ -20,8 +20,7 @@ and associated properties. */
 class Mage extends Hero {
   mana: number;
 
-  attack(): void {
-    super.attack();
+  override attack(): void {
     console.log("Casting A Spell");
     this.mana -= 1;
   }
@@ -30,8 +29,7 @@ class Mage extends Hero {
 class Knight extends Hero {
   shield: number;
 
-  attack(): void {
-    super.attack();
+  override attack(): void {
     console.log("Im Swinging With A Sword");
     this.shield -= 1;
   }
@@ -40,8 +38,7 @@ class Knight extends Hero {
 class Archer extends Hero {
   arrow: number;
 
-  attack(): void {
-    super.attack();
+  override attack(): void {
     console.log("Firing An Arrow");
     this.arrow -= 1;
   }
@@ -52,8 +49,7 @@ spell and decreases the spell count. */
 class Wizard extends Mage {
   spell: number;
 
-  attack(): void {
-    super.attack();
+  override attack(): void {
     console.log("Im Casting A Spell");
     this.spell -= 1;
   }
